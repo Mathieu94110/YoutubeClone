@@ -1,0 +1,10 @@
+.slide-in {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: -110%;
+  align-items: stretch;
+  opacity: 0;
+  transition-property: left, opacity;
+  transition-duration: 0.8s;
+}

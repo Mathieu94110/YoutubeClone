@@ -1,0 +1,41 @@
+.open-menu-container {
+  flex: 1;
+  background-color: #202020;
+  height: 100vh;
+  color: #fff;
+}
+
+.open-menu-wrapper {
+  padding: 18px 24px;
+}
+.burger-menu {
+  padding: 0;
+}
+.burger-menu:hover {
+  cursor: pointer;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 25px;
+}
+.logo > span.burger-menu {
+  display: flex;
+  align-items: center;
+}
+.logo > span.youtube-logo {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+}
+.logo > span > img {
+  height: 36px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  padding: 7.5px 0;
+}
