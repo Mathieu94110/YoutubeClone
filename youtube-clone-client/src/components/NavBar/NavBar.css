@@ -20,3 +20,30 @@
 .navbar-container > span.youtube-logo > img {
   height: 36px;
 }
+.navbar-search {
+  display: flex;
+  width: 50%;
+}
+.navbar-input {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 40px 0 0 40px;
+  background-color: white;
+}
+.navbar-search-input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+.navbar-search-button {
+  border: 1px solid #ccc;
+  background-color: solid #ccc;
+  border-radius: 0 40px 40px 0;
+  cursor: pointer;
+  width: 64px;
+  margin: 0;
+}

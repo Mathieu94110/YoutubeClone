@@ -13,6 +13,7 @@ import LiveTvOutlinedIcon from '@mui/icons-material/LiveTvOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import YoutubeLogo from '@/assets/images/logo-youtube.png';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -24,7 +25,7 @@ const Menu = ({
   setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
-    <div className="open-menu-container" >
+    <div className="open-menu-container">
       <div className="open-menu-wrapper">
         <div className="logo">
           <span
@@ -49,6 +50,13 @@ const Menu = ({
           <SubscriptionsOutlinedIcon />
           Abonnements
         </div>
+        <div className="border-row"></div>
+        Connectez vous pour liker les videos...
+        <button className="login-link-button">
+          <AccountCircleOutlinedIcon />
+          SE CONNECTER
+        </button>
+        <div className="border-row"></div>
         <div className="item">
           <HistoryOutlinedIcon />
           Historique
@@ -77,6 +85,7 @@ const Menu = ({
           <LiveTvOutlinedIcon />
           Direct
         </div>
+        <div className="border-row"></div>
         <div className="item">
           <SettingsOutlinedIcon />
           Paramètres
