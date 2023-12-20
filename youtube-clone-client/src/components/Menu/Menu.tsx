@@ -27,7 +27,7 @@ const Menu = ({
   return (
     <div className="open-menu-container">
       <div className="open-menu-wrapper">
-        <div className="logo">
+        <div className="open-menu-header">
           <span
             className="burger-menu"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -38,6 +38,7 @@ const Menu = ({
             <img src={YoutubeLogo} />
           </span>
         </div>
+        <div className="open-menu-body">
         <div className="item">
           <HomeIcon />
           Accueil
@@ -99,6 +100,7 @@ const Menu = ({
         <div className="item">
           <HelpOutlineOutlinedIcon />
           Aide
+        </div>
         </div>
       </div>
     </div>

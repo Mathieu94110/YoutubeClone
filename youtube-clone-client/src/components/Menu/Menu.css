@@ -1,49 +1,77 @@
 .open-menu-container {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   background-color: #202020;
   height: 100vh;
   color: #fff;
 }
 .open-menu-wrapper {
-  padding: 0 8px 18px 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
 }
 .burger-menu {
   padding: 0;
+  padding: 6px;
+}
+.burger-menu:hover {
+  border-radius: 100px;
+  background-color: #ccc;
+  color: #202020;
 }
 .burger-menu:hover {
   cursor: pointer;
 }
-.logo {
+.open-menu-header {
   display: flex;
   align-items: center;
-  gap: 5px;
+  padding-right: 8px;
+  margin-left: 6px;
 }
-.logo > span.burger-menu {
+.open-menu-header > span.burger-menu {
   display: flex;
   align-items: center;
 }
-.logo > span.youtube-logo {
+.open-menu-header > span.youtube-logo {
   padding: 18px 0;
   display: flex;
   align-items: center;
 }
-.logo > span > img {
+.open-menu-header > span > img {
   height: 36px;
+}
+.open-menu-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+  overflow-y: auto;
+  margin: 10px 0;
 }
 .item {
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
-  padding: 7.5px 0;
+  padding: 7.5px 12px 7px 8px;
   font-size: 12px;
+}
+.item:hover {
+  background-color: #ccc;
+  border-radius: 15px;
+  color: #202020;
+  font-weight: 600;
 }
 .border-row {
   margin: 6px 0px;
   border: 0.5px solid #ccc;
+  width: 98%;
 }
 .login-link-wrapper {
   font-size: 12px;
+  padding: 7.5px 12px 7px 8px;
 }
 .login-link-button {
   padding: 5px 15px;
@@ -59,23 +87,31 @@
   gap: 5px;
 }
 @media screen and (min-width: 640px) {
-  .open-menu-wrapper {
-    padding: 18px 24px;
-  }
-  .logo > span.youtube-logo {
+  .open-menu-header > span.youtube-logo {
     padding: 0 16px;
   }
-  .logo {
+  .open-menu-header {
+    padding: 18px 24px 0px 0px;
     margin-bottom: 25px;
+    margin-left: 12px;
+  }
+  .open-menu-body {
+    padding: 18px 0px;
+    margin-right: 12px;
   }
   .item {
     font-size: 16px;
+    padding-left: 6px;
+    padding-right: 12px;
+    margin: 0 12px;
   }
 
   .border-row {
-    margin: 15px 0px;
+    margin: 15px 0 15px 0;
   }
   .login-link-wrapper {
     font-size: 16px;
+    margin-left: 12px;
+    padding-left: 6px;
   }
 }
