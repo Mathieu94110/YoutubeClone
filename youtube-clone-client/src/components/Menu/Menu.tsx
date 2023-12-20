@@ -51,11 +51,13 @@ const Menu = ({
           Abonnements
         </div>
         <div className="border-row"></div>
-        Connectez vous pour liker les videos...
-        <button className="login-link-button">
-          <AccountCircleOutlinedIcon />
-          SE CONNECTER
-        </button>
+        <div className="login-link-wrapper">
+          Connectez vous pour liker les videos...
+          <button className="login-link-button">
+            <AccountCircleOutlinedIcon />
+            SE CONNECTER
+          </button>
+        </div>
         <div className="border-row"></div>
         <div className="item">
           <HistoryOutlinedIcon />
