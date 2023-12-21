@@ -9,3 +9,8 @@
 .app {
   display: flex;
 }
+.app-main {
+  display: 'flex';
+  flex-direction: 'column';
+  width: 100%;
+}
