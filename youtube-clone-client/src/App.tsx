@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Menu from './components/Menu/Menu';
+import Menu from '@/components/Menu/Menu';
+import NavBar from '@/components/NavBar/NavBar';
+import SlideIn from '@/utils/SlideIn/SlideIn';
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import SlideIn from './utils/SlideIn/SlideIn';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);

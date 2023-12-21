@@ -18,8 +18,15 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["vitest/globals"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "tests/*": ["./__tests__/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+
   "references": [{ "path": "./tsconfig.node.json" }]
 }
