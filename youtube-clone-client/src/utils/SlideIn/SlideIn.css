@@ -6,5 +6,5 @@
   align-items: stretch;
   opacity: 0;
   transition-property: left, opacity;
-  transition-duration: 0.8s;
+  transition-duration: 0.6s;
 }

@@ -14,7 +14,7 @@ function App() {
       </SlideIn>
       <div className="app-main">
         <NavBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        <YoutubeCardList />
+        <YoutubeCardList isMenuOpen={isMenuOpen} />
       </div>
     </div>
   );

@@ -7,7 +7,6 @@
   gap: 5px;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
   z-index: 20;
 }
 .nav-bar-start {

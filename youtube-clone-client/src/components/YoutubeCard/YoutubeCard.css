@@ -1,9 +1,8 @@
 .youtube-card-container {
   width: 256px;
-  height: 240px;
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 10px 25px;
   gap: 12px;
 }
 .youtube-card-content-top {
@@ -11,8 +10,8 @@
 }
 .youtube-card-content-top-duration {
   position: absolute;
-  bottom: 20px;
-  right: 13px;
+  bottom: 15px;
+  right: -5px;
   font-size: 14px;
   line-height: 20px;
   padding: 2px 8px;
@@ -22,7 +21,7 @@
 }
 .youtube-card-content-top-image {
   height: 176px;
-  width: 288px;
+  width: 270px;
 }
 .youtube-card-content-bottom {
   display: flex;
