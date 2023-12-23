@@ -6,7 +6,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      { path: '', element: <HomePage /> },
+      { index: true, element: <HomePage /> },
       { path: 'signin', element: <SigninPage /> },
       { path: 'search', element: <SearchPage /> },
       { path: 'video/:id', element: <VideoPage /> },

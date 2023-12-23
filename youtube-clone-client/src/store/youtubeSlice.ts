@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { parseData } from '@/utils/ParseData/ParseData';
+import { parseData } from '@/utils/ParseData/parseData';
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
 
@@ -9,8 +9,9 @@ const initialState = {
   currentPlaying: null,
   searchTerm: '',
   searchResults: [],
-  nextPageToker: null,
+  nextPageToken: null,
   recommendedVideo: [],
+  errors: null,
 };
 
 export const getHomePageVideos = createAsyncThunk(
@@ -22,14 +23,22 @@ export const getHomePageVideos = createAsyncThunk(
     const response = await fetch(
       `https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q="ate chuet"&key=${API_KEY}&part=snippet&type=video`,
     );
-    const data = response.json();
-    const items = data.items;
-    const parsedData = await parseData(items);
+    try {
+      const data = await response.json();
+      const items = data.items;
+      if (items) {
+        console.log(items);
+        const parsedData = await parseData(items);
 
-    return {
-      parsedData: [...videos, ...parsedData],
-      nextPageToken: nextPageTokenFromState,
-    };
+        return {
+          parsedData: [...videos, ...parsedData],
+          nextPageToken: nextPageTokenFromState,
+        };
+      }
+      return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
+    } catch (err) {
+      console.log(err);
+    }
   },
 );
 
@@ -38,7 +47,23 @@ const youtubeSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getHomePageVideos.fulfilled, (state, action) => {});
+    builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
+      if (action.payload && action.payload.parsedData) {
+        state.videos = action.payload.parsedData;
+        state.nextPageToken = action.payload.nextPageToken;
+        state.errors = null;
+      } else {
+        state.errors = action.payload;
+      }
+    }),
+      builder.addCase(getHomePageVideos.rejected, (state, action) => {
+        console.log(action);
+        if (action.payload.error && action.payload.error.message) {
+          state.errors = action.payload.error.message;
+        } else {
+          state.errors = 'Problème survenu lors de la requète !';
+        }
+      });
   },
 });
 

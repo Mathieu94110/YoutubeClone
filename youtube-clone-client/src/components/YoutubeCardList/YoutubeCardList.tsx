@@ -1,9 +1,14 @@
 import { HomePageVideos } from '@/types';
 import YoutubeCard from '../YoutubeCard/YoutubeCard';
-import { videos } from '@/locales/fakeVideos';
 import './YoutubeCardList.css';
 
-const YoutubeCardList = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
+const YoutubeCardList = ({
+  isMenuOpen,
+  videos,
+}: {
+  isMenuOpen: boolean;
+  videos: HomePageVideos[];
+}) => {
   return (
     <div className="youtube-card-list-container">
       {videos.length ? (

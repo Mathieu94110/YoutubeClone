@@ -2,7 +2,7 @@ import { HomePageVideos } from '@/types';
 import { Link } from 'react-router-dom';
 import './YoutubeCard.css';
 
-const YoutubeCard = ({ data }: { data: HomePageVideos }) =>{
+const YoutubeCard = ({ data }: { data: HomePageVideos }) => {
   return (
     <div className="youtube-card-container">
       <div className="youtube-card-content-top">
@@ -50,5 +50,5 @@ const YoutubeCard = ({ data }: { data: HomePageVideos }) =>{
       </div>
     </div>
   );
-}
+};
 export default YoutubeCard;
