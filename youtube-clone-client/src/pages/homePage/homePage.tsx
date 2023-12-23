@@ -10,6 +10,8 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
   const videos = useAppSelector((state) => state.youtube.videos);
   const errors = useAppSelector((state) => state.youtube.errors);
+  const isMenuOpen = useAppSelector((state) => state.menu.isMenuOpen);
+
   useEffect(() => {
     dispatch(getHomePageVideos(false));
     console.log(videos);
@@ -18,14 +20,14 @@ const HomePage = () => {
   return (
     <>
       {errors ? (
-        <div className="home-page-error-container">
+        <div className={`home-page-error-container ${isMenuOpen ? 'menu-open' : ''}`}>
           <div className="home-page-error-message">
             <img src={YoutubeErrorLogo} width={200} />
             <h2>{errors}</h2>
           </div>
         </div>
       ) : (
-        <YoutubeCardList isMenuOpen={false} videos={videos} />
+        <YoutubeCardList isMenuOpen={isMenuOpen} videos={videos} />
       )}
     </>
   );
