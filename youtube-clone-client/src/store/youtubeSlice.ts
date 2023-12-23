@@ -17,19 +17,21 @@ export const getHomePageVideos = createAsyncThunk(
   'fetchHomeVideos',
   async (isNext, { getState }) => {
     const {
-      youtube: { nextPageToken: nextPageTokenFromState, video },
+      youtube: { nextPageToken: nextPageTokenFromState, videos },
     } = getState();
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q="drop x out"&key=${API_KEY}&part=snippet&type=video`,
+      `https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q="ate chuet"&key=${API_KEY}&part=snippet&type=video`,
     );
-    const data = await response.json();
-    const items = await data.items;
+    const data = response.json();
+    const items = data.items;
     const parsedData = await parseData(items);
+
+    return {
+      parsedData: [...videos, ...parsedData],
+      nextPageToken: nextPageTokenFromState,
+    };
   },
 );
-// const res = await fetch(`${baseURL}/all`);
-// const videos = await res.json();
-// return videos;
 
 const youtubeSlice = createSlice({
   name: 'youtube',
