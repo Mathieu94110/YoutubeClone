@@ -30,7 +30,9 @@ const YoutubeCard = ({ data }: { data: HomePageVideos }) => {
         <div>
           <h3>
             <a href="#" className="youtube-card-content-video-title">
-              {data.videoTitle}
+              {data.videoTitle.length > 20
+                ? `${data.videoTitle.slice(0, 34)} ...`
+                : `${data.videoTitle}`}
             </a>
           </h3>
           <div className="youtube-card-content-video-stats-wrapper">
@@ -51,4 +53,5 @@ const YoutubeCard = ({ data }: { data: HomePageVideos }) => {
     </div>
   );
 };
+
 export default YoutubeCard;
