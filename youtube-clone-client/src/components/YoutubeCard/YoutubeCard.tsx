@@ -30,7 +30,7 @@ const YoutubeCard = ({ data }: { data: HomePageVideos }) => {
         <div>
           <h3>
             <a href="#" className="youtube-card-content-video-title">
-              {data.videoTitle.length > 20
+              {data.videoTitle.length > 34
                 ? `${data.videoTitle.slice(0, 34)} ...`
                 : `${data.videoTitle}`}
             </a>

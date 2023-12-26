@@ -70,6 +70,7 @@
   width: 100%;
   min-width: 60px;
   font-size: 11px;
+  padding-left: 10px;
 }
 .navbar-search-button {
   border: 1px solid #ccc;
@@ -146,6 +147,7 @@
   }
   .navbar-search-input {
     font-size: 1em;
+    padding-left: 0;
   }
   .navbar-search-button {
     width: 64px;

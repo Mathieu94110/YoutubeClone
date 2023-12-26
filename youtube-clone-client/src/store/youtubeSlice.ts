@@ -7,19 +7,17 @@ const API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
 const initialState = {
   videos: [],
   currentPlaying: null,
-  searchTerm: '',
+  searchText: '',
   searchResults: [],
   nextPageToken: null,
   recommendedVideo: [],
   errors: null,
 };
 
+//api reducers
 export const getHomePageVideos = createAsyncThunk(
   'fetchHomeVideos',
-  async (isNext, { getState }) => {
-    const {
-      youtube: { nextPageToken: nextPageTokenFromState, videos },
-    } = getState();
+  async () => {
     const response = await fetch(
       `https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q="ate chuet"&key=${API_KEY}&part=snippet&type=video`,
     );
@@ -29,11 +27,31 @@ export const getHomePageVideos = createAsyncThunk(
       if (items) {
         console.log(items);
         const parsedData = await parseData(items);
-
         return {
-          parsedData: [...videos, ...parsedData],
-          nextPageToken: nextPageTokenFromState,
-        };
+          parsedData: [...parsedData],
+      }}
+      return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
+    } catch (err) {
+      console.log(err);
+    }
+  },
+);
+
+export const getSearchPageVideos = createAsyncThunk(
+  'fetchSearchVideos',
+  async (searchText) => {
+    const response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/search?q=${searchText}&maxResults=20&key=${API_KEY}&part=snippet&type=video`,
+    );
+    try {
+      const data = await response.json();
+      const items = data.items;
+      if (items) {
+        console.log(items);
+        const parsedData = await parseData(items);
+        return {
+          parsedData: [...parsedData],      
+      }
       }
       return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
     } catch (err) {
@@ -42,15 +60,26 @@ export const getHomePageVideos = createAsyncThunk(
   },
 );
 
+//
 const youtubeSlice = createSlice({
   name: 'youtube',
   initialState,
-  reducers: {},
+  reducers: {
+    clearVideos: (state) => {
+      state.videos = [];
+      state.nextPageToken = null;
+    },
+    changeSearchText: (state, action) => {
+      state.searchText = action.payload;
+    },
+    clearSearch: (state) => {
+      state.searchText = '';
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
       if (action.payload && action.payload.parsedData) {
         state.videos = action.payload.parsedData;
-        state.nextPageToken = action.payload.nextPageToken;
         state.errors = null;
       } else {
         state.errors = action.payload;
@@ -58,13 +87,20 @@ const youtubeSlice = createSlice({
     }),
       builder.addCase(getHomePageVideos.rejected, (state, action) => {
         console.log(action);
-        if (action.payload.error && action.payload.error.message) {
-          state.errors = action.payload.error.message;
-        } else {
-          state.errors = 'Problème survenu lors de la requète !';
-        }
+        state.errors = 'Problème survenu lors de la requète !';
       });
+    builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
+      console.log(action);
+      if (action.payload && action.payload.parsedData) {
+        state.searchResults = action.payload.parsedData;
+        state.errors = null;
+      } else {
+        state.errors = 'Problème survenu lors de la requète !';
+      }
+    });
   },
 });
 
+export const { clearVideos, changeSearchText, clearSearch } =
+  youtubeSlice.actions;
 export default youtubeSlice.reducer;

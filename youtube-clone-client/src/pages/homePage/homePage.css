@@ -17,11 +17,6 @@
 .home-page-error-message > h2 {
   font-size: 14px;
 }
-.menu-open {
-  margin-left: 220px;
-  transition-property: margin-left;
-  transition-duration: 0.6s;
-}
 
 @media screen and (min-width: 800px) {
   .home-page-error-message {
@@ -31,8 +26,5 @@
   }
   .home-page-error-message > h2 {
     font-size: 18px;
-  }
-  .menu-open {
-    margin-left: 300px;
   }
 }

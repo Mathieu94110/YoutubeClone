@@ -40,13 +40,13 @@ export const parseData = async (items) => {
     const videosData = videosJson.items;
     const parsedData = [];
     items.forEach((item, index) => {
-      const { image: channelImage } = parsedChannelsData.find(
-        (data) => data.id === item.snippet.channelId,
-      );
+      const { image: channelImage } =
+        parsedChannelsData.find((data) => data.id === item.snippet.channelId) ||
+        {};
       console.log(channelImage);
       if (channelImage) {
         parsedData.push({
-          videoId: item.id.videoData,
+          videoId: item.id.videoId,
           videoTitle: item.snippet.title,
           videoDescription: item.snippet.description,
           videoThumbnail: item.snippet.thumbnails.medium.url,
@@ -60,7 +60,7 @@ export const parseData = async (items) => {
           videoAge: timeSince(new Date(item.snippet.publishedAt)),
           channelInfo: {
             id: item.snippet.channelId,
-            image: channelImage,
+            image: channelImage ? channelImage : '',
             name: item.snippet.channelTitle,
           },
         });
