@@ -5,7 +5,6 @@ import { timeSince } from '../TimeSince/timeSince';
 const API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
 
 export const parseRecommendedData = async (items) => {
-  console.log(items);
   try {
     const videoIds = [];
     const channelIds = [];
@@ -14,13 +13,11 @@ export const parseRecommendedData = async (items) => {
       channelIds.push(item.snippet.channelId);
       videoIds.push(item.id.videoId);
     });
-    console.log(channelIds);
     const response = await fetch(
       `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelIds}.join(",")}&key=${API_KEY}`,
     );
     const data = await response.json();
     const channelsData = data;
-    console.log(data);
     const parsedChannelsData = [];
 
     channelsData.items.map((channel) => {
@@ -29,21 +26,18 @@ export const parseRecommendedData = async (items) => {
         image: channel.snippet.thumbnails.default.url,
       });
     });
-    console.log(parsedChannelsData);
     const videos = await fetch(
       `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds.join(
         ',',
       )}&key=${API_KEY}`,
     );
     const videosJson = await videos.json();
-    console.log('videosJson =', videosJson);
     const videosData = videosJson.items;
     const parsedData = [];
     items.forEach((item, index) => {
       const { image: channelImage } =
         parsedChannelsData.find((data) => data.id === item.snippet.channelId) ||
         {};
-      console.log(channelImage);
       if (channelImage) {
         parsedData.push({
           videoId: item.id.videoId,
@@ -66,7 +60,6 @@ export const parseRecommendedData = async (items) => {
         });
       }
     });
-    console.log('parsedData = ', parsedData);
     return parsedData;
   } catch (err) {
     console.log(err);

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import YoutubeCardList from '@/components/YoutubeCardList/YoutubeCardList';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { getHomePageVideos } from '@/store/youtubeSlice';
+import { getHomePageVideos } from '@/store/reducers/getHomePageVideos';
 import YoutubeErrorLogo from '@/assets/images/logo-youtube-error.png';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -13,7 +13,6 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getHomePageVideos(false));
-    console.log(videos);
   }, [dispatch]);
 
   return (

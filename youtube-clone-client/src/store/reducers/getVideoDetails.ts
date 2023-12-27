@@ -9,13 +9,14 @@ export const getVideoDetails = createAsyncThunk('videoDetails', async (id) => {
     `https://youtube.googleapis.com/youtube/v3/videos?&key=${API_KEY}&part=snippet,statistics&type=video&id=${id}`,
   );
   try {
+    if(response.status === 403){
+      return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
+    }
     const data = await response.json();
     const items = data.items;
     if (items) {
-      console.log(items);
       return parsedData(items[0]);
     }
-    return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
   } catch (err) {
     console.log(err);
   }

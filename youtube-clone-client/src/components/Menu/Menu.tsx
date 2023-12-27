@@ -33,7 +33,7 @@ const Menu = ({
         <div className="open-menu-body">
           {menuHeaderLinks.map(({ icon, label }) => {
             return (
-              <div className="item">
+              <div className="item" key={label}>
                 {icon}
                 {label}
               </div>
@@ -50,7 +50,7 @@ const Menu = ({
           <div className="border-row"></div>
           {menuBodyLinks.map(({ icon, label }) => {
             return (
-              <div className="item">
+              <div className="item" key={label}>
                 {icon}
                 {label}
               </div>
@@ -59,7 +59,7 @@ const Menu = ({
           <div className="border-row"></div>
           {menuFooterLinks.map(({ icon, label }) => {
             return (
-              <div className="item">
+              <div className="item" key={label}>
                 {icon}
                 {label}
               </div>

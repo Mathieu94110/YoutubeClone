@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { clearVideos, getSearchPageVideos } from '@/store/youtubeSlice';
+import { clearVideos } from '@/store/youtubeSlice';
+import { getSearchPageVideos } from '@/store/reducers/getSearchPageVideos';
 import YoutubeErrorLogo from '@/assets/images/logo-youtube-error.png';
 import SearchCard from '@/components/SearchCard/SearchCard';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -21,7 +22,7 @@ const SearchPage = () => {
     dispatch(clearVideos());
     if (searchText === '') navigate('/');
     else {
-      dispatch(getSearchPageVideos(searchText));
+      dispatch(getSearchPageVideos(false));
     }
   }, [dispatch, navigate, searchText]);
 
