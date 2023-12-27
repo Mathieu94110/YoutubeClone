@@ -10,12 +10,11 @@ export interface IconProps {
   icon?: keyof typeof MUIcon;
 }
 
-export interface HomePageVideos {
+export interface IYoutubeVideo {
   videoId: string;
   videoTitle: string;
   videoDescription: string;
   videoLink: string;
-
   videoThumbnail: string;
   videoDuration: string;
   videoViews: string;

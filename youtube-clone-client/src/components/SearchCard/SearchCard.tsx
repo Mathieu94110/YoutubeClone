@@ -1,7 +1,7 @@
-import React from 'react';
+import { IYoutubeVideo } from '@/types';
 import './SearchCard.css';
 
-const SearchCard = ({ data }) => {
+const SearchCard = ({ data }:{data:IYoutubeVideo}) => {
   return (
     <div className="search-card">
       <div className="search-card-header">
@@ -39,7 +39,7 @@ const SearchCard = ({ data }) => {
           </a>
         </div>
         <div>
-          <div className='search-card-video-description'>
+          <div className="search-card-video-description">
             <p>{data.videoDescription}</p>
           </div>
         </div>

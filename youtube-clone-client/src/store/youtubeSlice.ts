@@ -29,7 +29,8 @@ export const getHomePageVideos = createAsyncThunk(
         const parsedData = await parseData(items);
         return {
           parsedData: [...parsedData],
-      }}
+        };
+      }
       return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
     } catch (err) {
       console.log(err);
@@ -50,8 +51,8 @@ export const getSearchPageVideos = createAsyncThunk(
         console.log(items);
         const parsedData = await parseData(items);
         return {
-          parsedData: [...parsedData],      
-      }
+          parsedData: [...parsedData],
+        };
       }
       return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
     } catch (err) {
@@ -59,8 +60,8 @@ export const getSearchPageVideos = createAsyncThunk(
     }
   },
 );
-
 //
+
 const youtubeSlice = createSlice({
   name: 'youtube',
   initialState,
@@ -95,7 +96,7 @@ const youtubeSlice = createSlice({
         state.searchResults = action.payload.parsedData;
         state.errors = null;
       } else {
-        state.errors = 'Problème survenu lors de la requète !';
+        state.errors = action.payload;
       }
     });
   },

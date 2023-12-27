@@ -3,8 +3,7 @@ import YoutubeCardList from '@/components/YoutubeCardList/YoutubeCardList';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import { getHomePageVideos } from '@/store/youtubeSlice';
 import YoutubeErrorLogo from '@/assets/images/logo-youtube-error.png';
-import './homePage.css';
-// import { videos } from '@/locales/fakeVideos';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -19,9 +18,13 @@ const HomePage = () => {
 
   return (
     <>
-      {errors ? (
-        <div className={`home-page-error-container ${isMenuOpen ? 'menu-open' : ''}`}>
-          <div className="home-page-error-message">
+      {!videos.length && !errors ? (
+        <div className="loader-container">
+          <CircularProgress />
+        </div>
+      ) : errors ? (
+        <div className={`error-container ${isMenuOpen ? 'menu-open' : ''}`}>
+          <div className="error-message">
             <img src={YoutubeErrorLogo} width={200} />
             <h2>{errors}</h2>
           </div>

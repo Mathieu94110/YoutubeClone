@@ -1,8 +1,8 @@
-import { HomePageVideos } from '@/types';
 import { Link } from 'react-router-dom';
+import { IYoutubeVideo } from '@/types';
 import './YoutubeCard.css';
 
-const YoutubeCard = ({ data }: { data: HomePageVideos }) => {
+const YoutubeCard = ({ data }: { data: IYoutubeVideo }) => {
   return (
     <div className="youtube-card-container">
       <div className="youtube-card-content-top">

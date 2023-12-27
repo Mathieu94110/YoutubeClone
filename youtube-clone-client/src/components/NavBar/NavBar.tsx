@@ -6,7 +6,6 @@ import VideoCallIcon from '@mui/icons-material/VideoCall';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import PersonIcon from '@mui/icons-material/Person';
 import YoutubeLogo from '@/assets/images/logo-youtube.png';
-import './NavBar.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import {
   changeSearchText,
@@ -14,6 +13,7 @@ import {
   getSearchPageVideos,
 } from '@/store/youtubeSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './NavBar.css';
 
 const NavBar = ({
   isMenuOpen,
