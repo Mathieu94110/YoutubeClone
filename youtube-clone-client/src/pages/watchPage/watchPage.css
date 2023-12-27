@@ -1,0 +1,6 @@
+.watch-page-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  overflow-y: hidden;
+}

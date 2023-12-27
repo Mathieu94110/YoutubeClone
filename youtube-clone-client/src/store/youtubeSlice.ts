@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { parseData } from '@/utils/ParseData/parseData';
+import { getVideoDetails } from './reducers/getVideoDetails';
+import { getRecommendedVideos } from './reducers/getRecommendedVideo';
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
 
@@ -100,6 +102,19 @@ const youtubeSlice = createSlice({
       } else {
         state.errors = action.payload;
       }
+    });
+    builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
+      console.log('Fulfilled =', action);
+      if (action.payload && action.payload.parsedData) {
+        state.recommendedVideo = action.payload.parsedData;
+        state.errors = null;
+      } else {
+        state.errors = action.payload;
+      }
+    });
+    builder.addCase(getVideoDetails.fulfilled, (state, action) => {
+      console.log('Fulfilled =', action);
+        state.currentPlaying = action.payload;
     });
   },
 });

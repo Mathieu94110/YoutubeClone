@@ -1,16 +1,19 @@
 import { IYoutubeVideo } from '@/types';
 import './SearchCard.css';
+import { Link } from 'react-router-dom';
 
 const SearchCard = ({ data }:{data:IYoutubeVideo}) => {
   return (
     <div className="search-card">
       <div className="search-card-header">
         <span className="search-card-video-duration">{data.videoDuration}</span>
+        <Link to={`/video/${data.videoId}`}>
         <img
           src={data.videoThumbnail}
           alt={data.videoTitle}
           className="search-card-image"
         />
+        </Link>
       </div>
       <div className="search-card-infos">
         <h3 className="search-card-video-title">

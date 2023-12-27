@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { IYoutubeVideo } from '@/types';
 import './YoutubeCard.css';
 
+
 const YoutubeCard = ({ data }: { data: IYoutubeVideo }) => {
   return (
     <div className="youtube-card-container">
@@ -9,7 +10,7 @@ const YoutubeCard = ({ data }: { data: IYoutubeVideo }) => {
         <span className="youtube-card-content-top-duration">
           {data.videoDuration}
         </span>
-        <Link to={`/watch/${data.videoId}`}>
+        <Link to={`/video/${data.videoId}`}>
           <img
             src={data.videoThumbnail}
             className="youtube-card-content-top-image"
