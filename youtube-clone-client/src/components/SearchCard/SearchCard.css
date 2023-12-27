@@ -27,9 +27,7 @@
   flex-direction: column;
   padding: 0 10px;
 }
-.search-card-video-title {
-  max-width: 672px;
-}
+
 .search-card-video-title-link {
   overflow: hidden;
   display: -webkit-box;
@@ -74,6 +72,12 @@
     height: 208px;
     width: 384px;
   }
+  .search-card-infos {
+align-items : center;
+  }
+  .search-card-video-title {
+    max-width: 384px;
+  }
   .search-card-video-duration {
     right: calc(((100% - 230px) / 2) - 72px);
   }
@@ -104,6 +108,7 @@
   }
   .search-card-infos {
     padding: 10px;
+    align-items: flex-start;
   }
   .search-card-bottom-link {
     justify-content: start;
@@ -112,5 +117,8 @@
     text-align: left;
     max-width: 672px;
     margin: 0;
+  }
+  .search-card-video-title {
+    max-width: 672px;
   }
 }

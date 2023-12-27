@@ -25,13 +25,15 @@ const NavBar = ({
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const searchText = useAppSelector((state) => state.youtube.searchText);
+  const searchText = useAppSelector(
+    (state) => state.youtube.searchText,
+  ) as string;
 
   const handleSearch = () => {
     if (location.pathname !== '/search') navigate('/search');
     else {
-      dispatch(clearVideos);
-      dispatch(getSearchPageVideos(false));
+      dispatch(clearVideos());
+      dispatch(getSearchPageVideos(searchText));
     }
   };
 

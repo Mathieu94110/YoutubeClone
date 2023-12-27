@@ -13,13 +13,15 @@ const SearchPage = () => {
   const searchResults = useAppSelector((state) => state.youtube.searchResults);
   const errors = useAppSelector((state) => state.youtube.errors);
   const isMenuOpen = useAppSelector((state) => state.menu.isMenuOpen);
-  const searchText = useAppSelector((state) => state.youtube.searchText);
+  const searchText = useAppSelector(
+    (state) => state.youtube.searchText,
+  ) as string;
 
   useEffect(() => {
     dispatch(clearVideos());
     if (searchText === '') navigate('/');
     else {
-      dispatch(getSearchPageVideos(false));
+      dispatch(getSearchPageVideos(searchText));
     }
   }, [dispatch, navigate, searchText]);
 

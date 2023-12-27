@@ -40,9 +40,9 @@ export const getHomePageVideos = createAsyncThunk(
 
 export const getSearchPageVideos = createAsyncThunk(
   'fetchSearchVideos',
-  async (searchText) => {
+  async (arg) => {
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?q=${searchText}&maxResults=20&key=${API_KEY}&part=snippet&type=video`,
+      `https://youtube.googleapis.com/youtube/v3/search?q=${arg}&maxResults=20&key=${API_KEY}&part=snippet&type=video`,
     );
     try {
       const data = await response.json();
@@ -67,10 +67,12 @@ const youtubeSlice = createSlice({
   initialState,
   reducers: {
     clearVideos: (state) => {
-      state.videos = [];
+      console.log();
+      state.searchResults = [];
       state.nextPageToken = null;
     },
     changeSearchText: (state, action) => {
+      console.log('SEARCHTEXT = ', action);
       state.searchText = action.payload;
     },
     clearSearch: (state) => {
@@ -91,7 +93,7 @@ const youtubeSlice = createSlice({
         state.errors = 'Problème survenu lors de la requète !';
       });
     builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
-      console.log(action);
+      console.log('Fulfilled =', action);
       if (action.payload && action.payload.parsedData) {
         state.searchResults = action.payload.parsedData;
         state.errors = null;
