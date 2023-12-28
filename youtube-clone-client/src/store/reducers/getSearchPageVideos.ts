@@ -4,9 +4,9 @@ const API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
 
 export const getSearchPageVideos = createAsyncThunk(
   'fetchSearchVideos',
-  async ({ getState }) => {
+  async (_,{ getState }) => {
     const {
-      youtube: { videos, searchText },
+      youtube: {  searchText },
     } = getState();
     const response = await fetch(
       `https://youtube.googleapis.com/youtube/v3/search?q=${searchText}&maxResults=20&key=${API_KEY}&part=snippet&type=video`,
@@ -20,7 +20,7 @@ export const getSearchPageVideos = createAsyncThunk(
       if (items) {
         const parsedData = await parseData(items);
         return {
-          parsedData: [...videos, ...parsedData],
+          parsedData: [ ...parsedData],
         };
       }
     } catch (err) {

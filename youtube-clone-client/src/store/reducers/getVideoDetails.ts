@@ -13,9 +13,10 @@ export const getVideoDetails = createAsyncThunk('videoDetails', async (id) => {
       return "Le nombre maximal de requètes à l'api de youtube pour ce jour a été atteint !";
     }
     const data = await response.json();
-    const items = data.items;
+    const items = data.items[0];
     if (items) {
-      return parsedData(items[0]);
+      const videoDetails = await parsedData(items);
+      return videoDetails
     }
   } catch (err) {
     console.log(err);
@@ -28,9 +29,18 @@ async function parsedData(item) {
     `https://youtube.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${snippet.channelId}&key=${API_KEY}`,
   );
   const channelData = await channelResponse.json();
-  const channelImage = channelData.data.items[0].snippet.thumbnails.default.url;
-  const subscriberCount = channelData.data.item[0].statistics.subscriberCount;
 
+  const channelImage = channelData.items[0].snippet.thumbnails.default.url ? channelData.items[0].snippet.thumbnails.default.url : "";
+  const subscriberCount = channelData.items[0].statistics.subscriberCount ? channelData.items[0].statistics.subscriberCount : "";
+// console.log(    'videoId:', id,
+//   'videoTitle:', snippet.title,
+//   'videoDescription:', snippet.description,
+//   'videoViews:', convertRawToString(statistics.viewCount),
+//   'videoAge:', timeSince(new Date(snippet.publishedAt)),
+//     'id:', snippet.channelId,
+//     'image:', channelImage ? channelImage : '',
+//     'name:', snippet.channelTitle,
+//     'subscribers:', convertRawToString(subscriberCount, true));
   return {
     videoId: id,
     videoTitle: snippet.title,

@@ -12,9 +12,9 @@ const WatchPage = () => {
   const currentPlaying = useAppSelector(
     (state) => state.youtube.currentPlaying,
   );
-  const recommendedVideo = useAppSelector(
-    (state) => state.youtube.recommendedVideo,
-  );
+  // const recommendedVideo = useAppSelector(
+  //   (state) => state.youtube.recommendedVideo,
+  // );
 
   useEffect(() => {
     if (id) {
@@ -25,6 +25,7 @@ const WatchPage = () => {
   }, [id, navigate, dispatch]);
 
   useEffect(() => {
+  
     if (currentPlaying && id) dispatch(getRecommendedVideos(id));
   }, [currentPlaying, dispatch, id]);
   return (

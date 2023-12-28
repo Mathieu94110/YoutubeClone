@@ -37,6 +37,7 @@ const youtubeSlice = createSlice({
       }
     }),
       builder.addCase(getHomePageVideos.rejected, (state, action) => {
+        console.log(action)
         state.errors = 'Problème survenu lors de la requète !';
       });
     builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
@@ -48,6 +49,7 @@ const youtubeSlice = createSlice({
       }
     });
     builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
+      console.log(action.payload);
       if (action.payload && action.payload.parsedData) {
         state.recommendedVideo = action.payload.parsedData;
         state.errors = null;

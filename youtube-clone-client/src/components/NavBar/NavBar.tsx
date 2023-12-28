@@ -34,20 +34,20 @@ const NavBar = ({
     }
   };
   // for enter key pressed submit also
-  useEffect(() => {
-    const keyDownHandler = (event) => {
-      event.preventDefault();
-      if (event.key === 'Enter' && searchText.length) {
-        handleSearch();
-      }
-    };
-    // creating listener when page loaded
-    document.addEventListener('keydown', keyDownHandler);
-    // clear listener when page closed
-    return () => {
-      document.removeEventListener('keydown', keyDownHandler);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const keyDownHandler = (event) => {
+  //     event.preventDefault();
+  //     if (event.key === 'Enter' && searchText.length) {
+  //       handleSearch();
+  //     }
+  //   };
+  //   // creating listener when page loaded
+  //   document.addEventListener('keydown', keyDownHandler);
+  //   // clear listener when page closed
+  //   return () => {
+  //     document.removeEventListener('keydown', keyDownHandler);
+  //   };
+  // }, []);
 
   return (
     <div className="navbar-container">
