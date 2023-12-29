@@ -1,6 +1,44 @@
 .watch-page-container {
+  padding: 10px;
+  display: block;
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  overflow-y: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin: auto;
+}
+.iframe-wrapper {
+  height:auto;
+  width: 100%;
+}
+.responsive-iframe {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width: 350px) and (max-width: 500px) {
+  .iframe-wrapper {
+    height:200px;
+  }
+}
+@media (min-width: 501px) and (max-width: 800px) {
+  .iframe-wrapper {
+    height:300px;
+  }
+}
+@media screen and (min-width: 801px) {
+  .watch-page-container {
+    padding: 20px;
+  }
+  .menu-open {
+    margin-left: 300px;
+  }
+}
+@media (min-width: 801px) and (max-width: 1199px) {
+  .iframe-wrapper {
+    height:500px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .iframe-wrapper {
+    height: 600px;
+  }
 }

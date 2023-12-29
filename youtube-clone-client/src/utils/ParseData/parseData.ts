@@ -5,6 +5,7 @@ import { timeSince } from '../TimeSince/timeSince';
 const API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
 
 export const parseData = async (items) => {
+  console.log('items on parseData debut =',items)
   try {
     const videoIds = [];
     const channelIds = [];
@@ -13,10 +14,12 @@ export const parseData = async (items) => {
       channelIds.push(item.snippet.channelId);
       videoIds.push(item.id.videoId);
     });
+    console.log(channelIds)
     const response = await fetch(
       `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelIds}.join(",")}&key=${API_KEY}`,
     );
     const data = await response.json();
+    console.log(data)
     const channelsData = data;
     const parsedChannelsData = [];
 
@@ -31,6 +34,7 @@ export const parseData = async (items) => {
         ',',
       )}&key=${API_KEY}`,
     );
+    console.log(videos)
     const videosJson = await videos.json();
     const videosData = videosJson.items;
     const parsedData = [];
@@ -60,6 +64,7 @@ export const parseData = async (items) => {
         });
       }
     });
+    console.log('parsedData =',parsedData)
     return parsedData;
   } catch (err) {
     console.log(err);

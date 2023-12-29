@@ -11,15 +11,11 @@ const YoutubeCardList = ({
 }) => {
   return (
     <div className="youtube-card-list-container">
-      {videos.length ? (
-        <div className={`youtube-card-list ${isMenuOpen ? 'menu-open' : ''}`}>
-          {videos.map((item: IYoutubeVideo) => {
-            return <YoutubeCard data={item} key={item.videoId} />;
-          })}
-        </div>
-      ) : (
-        <p>Chargement en cours ...</p>
-      )}
+      <div className={`youtube-card-list ${isMenuOpen ? 'menu-open' : ''}`}>
+        {videos.map((item: IYoutubeVideo) => {
+          return <YoutubeCard data={item} key={item.videoId} />;
+        })}
+      </div>
     </div>
   );
 };
