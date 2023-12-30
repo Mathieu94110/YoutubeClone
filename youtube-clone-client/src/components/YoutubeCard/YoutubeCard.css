@@ -10,8 +10,7 @@
 }
 .youtube-card-content-top-duration {
   position: absolute;
-  bottom: 15
-  px;
+  bottom: 15 px;
   right: -5px;
   font-size: 14px;
   line-height: 20px;
@@ -23,6 +22,7 @@
 .youtube-card-content-top-image {
   height: 176px;
   width: 270px;
+  border-radius: 12px;
 }
 .youtube-card-content-bottom {
   display: flex;

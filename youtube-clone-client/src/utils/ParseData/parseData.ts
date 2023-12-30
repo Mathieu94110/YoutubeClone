@@ -3,23 +3,23 @@ import { convertRawToString } from '../ConvertRawToString/convertRawToString';
 import { timeSince } from '../TimeSince/timeSince';
 
 const API_KEY = import.meta.env.VITE_YOUTUBE_DATA_API_KEY;
+const BASE_URI = import.meta.env.VITE_YOUTUBE_BASE_URI;
 
-export const parseData = async (items) => {
-  console.log('items on parseData debut =',items)
+export const parseData = async (items, type) => {
   try {
     const videoIds = [];
     const channelIds = [];
 
     items.forEach((item) => {
       channelIds.push(item.snippet.channelId);
-      videoIds.push(item.id.videoId);
+      type === 'details' || type === 'recommended'
+        ? videoIds.push(item.id.videoId)
+        : videoIds.push(item.id);
     });
-    console.log(channelIds)
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelIds}.join(",")}&key=${API_KEY}`,
+      `${BASE_URI}/channels?part=snippet&id=${channelIds}.join(",")}&key=${API_KEY}`,
     );
     const data = await response.json();
-    console.log(data)
     const channelsData = data;
     const parsedChannelsData = [];
 
@@ -30,11 +30,10 @@ export const parseData = async (items) => {
       });
     });
     const videos = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds.join(
+      `${BASE_URI}/videos?part=contentDetails,statistics&id=${videoIds.join(
         ',',
       )}&key=${API_KEY}`,
     );
-    console.log(videos)
     const videosJson = await videos.json();
     const videosData = videosJson.items;
     const parsedData = [];
@@ -44,11 +43,18 @@ export const parseData = async (items) => {
         {};
       if (channelImage) {
         parsedData.push({
-          videoId: item.id.videoId,
+          videoId:
+            type === 'details' || type === 'recommended'
+              ? item.id.videoId
+              : item.id,
           videoTitle: item.snippet.title,
           videoDescription: item.snippet.description,
           videoThumbnail: item.snippet.thumbnails.medium.url,
-          videoLink: `https://www.youtube.com/watch?v=${item.id.videoId}`,
+          videoLink: `https://www.youtube.com/watch?v=${
+            type === 'details' || type === 'recommended'
+              ? item.id.videoId
+              : item.id
+          }`,
           videoDuration: parseVideoDuration(
             videosData[index].contentDetails.duration,
           ),
@@ -64,7 +70,6 @@ export const parseData = async (items) => {
         });
       }
     });
-    console.log('parsedData =',parsedData)
     return parsedData;
   } catch (err) {
     console.log(err);

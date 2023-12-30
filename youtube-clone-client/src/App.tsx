@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 import Menu from '@/components/Menu/Menu';
 import NavBar from '@/components/NavBar/NavBar';
-import SlideIn from '@/utils/SlideIn/SlideIn';
-import './App.css';
-import { Outlet } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './hooks/useApp';
+import { SlideIn } from '@/utils';
 import { toggleMenu } from './store/menuSlice';
+import './App.css';
 
 function App() {
   const isMenuOpen = useAppSelector((state) => state.menu.isMenuOpen);

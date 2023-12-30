@@ -14,7 +14,7 @@ import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import { menuLink } from '../types';
 
 const menuHeaderLinks: menuLink[] = [
-  { icon: <HomeIcon />, label: 'Accueil' },
+  { icon: <HomeIcon />, label: 'Accueil', path: '/' },
   { icon: <ExploreOutlinedIcon />, label: 'Shorts' },
   { icon: <SubscriptionsOutlinedIcon />, label: 'Abonnements' },
 ];

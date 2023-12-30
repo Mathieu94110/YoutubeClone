@@ -1,4 +1,4 @@
-import YoutubeCard from '../YoutubeCard/YoutubeCard';
+import YoutubeCard from '@/components/YoutubeCard/YoutubeCard';
 import { IYoutubeVideo } from '@/types';
 import './YoutubeCardList.css';
 

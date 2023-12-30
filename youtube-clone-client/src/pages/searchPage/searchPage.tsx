@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import { clearVideos } from '@/store/youtubeSlice';
-import { getSearchPageVideos } from '@/store/reducers/getSearchPageVideos';
+import { getSearchPageVideos } from '@/store/reducers';
 import YoutubeErrorLogo from '@/assets/images/logo-youtube-error.png';
 import SearchCard from '@/components/SearchCard/SearchCard';
 import CircularProgress from '@mui/material/CircularProgress';

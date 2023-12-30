@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -9,7 +9,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import YoutubeLogo from '@/assets/images/logo-youtube.png';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
 import { changeSearchText, clearVideos } from '@/store/youtubeSlice';
-import { getSearchPageVideos } from '@/store/reducers/getSearchPageVideos';
+import { getSearchPageVideos } from '@/store/reducers';
 import './NavBar.css';
 
 const NavBar = ({
@@ -33,22 +33,6 @@ const NavBar = ({
       dispatch(getSearchPageVideos(false));
     }
   };
-  // for enter key pressed submit also
-  // useEffect(() => {
-  //   const keyDownHandler = (event) => {
-  //     event.preventDefault();
-  //     if (event.key === 'Enter' && searchText.length) {
-  //       handleSearch();
-  //     }
-  //   };
-  //   // creating listener when page loaded
-  //   document.addEventListener('keydown', keyDownHandler);
-  //   // clear listener when page closed
-  //   return () => {
-  //     document.removeEventListener('keydown', keyDownHandler);
-  //   };
-  // }, []);
-
   return (
     <div className="navbar-container">
       <div className="nav-bar-start">

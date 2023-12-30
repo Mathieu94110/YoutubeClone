@@ -4,6 +4,7 @@ import * as MUIcon from '@mui/icons-material';
 export type menuLink = {
   icon: React.ReactNode;
   label: string;
+  path?: string;
 };
 
 export interface IconProps {

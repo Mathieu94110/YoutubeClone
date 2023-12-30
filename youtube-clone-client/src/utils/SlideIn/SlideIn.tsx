@@ -1,5 +1,5 @@
 import './SlideIn.css';
-const SlideIn = ({
+export const SlideIn = ({
   children,
   startAnimation,
 }: {
@@ -8,9 +8,12 @@ const SlideIn = ({
 }) => {
   const transtionProperties = startAnimation ? { left: 0, opacity: 1 } : {};
   return (
-    <div className="slide-in" style={transtionProperties}>
+    <div
+      className="slide-in"
+      style={transtionProperties}
+      data-testid="slide-in-container"
+    >
       {children}
     </div>
   );
 };
-export default SlideIn;

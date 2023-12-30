@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { getVideoDetails } from '@/store/reducers/getVideoDetails';
-import { getRecommendedVideos } from '@/store/reducers/getRecommendedVideo';
+import { getVideoDetails, getRecommendedVideos } from '@/store/reducers';
 import YoutubeCardList from '@/components/YoutubeCardList/YoutubeCardList';
 import CircularProgress from '@mui/material/CircularProgress';
 import YoutubeErrorLogo from '@/assets/images/logo-youtube-error.png';
@@ -34,16 +33,16 @@ const WatchPage = () => {
   }, [currentPlaying, dispatch, id]);
   return (
     <div className="watch-page-container">
-          <div className="iframe-wrapper">
-          <iframe
-        src={`https://www.youtube.com/embed/${id}?autoplay-1`}
-        // width={800}
-        // height={502}
-        // allowFullScreen
-        className="responsive-iframe"
-        title="lecteur youtube"
-      ></iframe>
-          </div>
+      <div className="iframe-wrapper">
+        <iframe
+          src={`https://www.youtube.com/embed/${id}?autoplay-1`}
+          // width={800}
+          // height={502}
+          // allowFullScreen
+          className="responsive-iframe"
+          title="lecteur youtube"
+        ></iframe>
+      </div>
 
       {!recommendedVideo.length && !errors ? (
         <div className="loader-container">

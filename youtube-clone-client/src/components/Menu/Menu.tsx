@@ -8,6 +8,7 @@ import {
   menuFooterLinks,
 } from '@/locales/menuLinks';
 import './Menu.css';
+import { Link } from 'react-router-dom';
 
 const Menu = ({
   isMenuOpen,
@@ -31,12 +32,14 @@ const Menu = ({
           </span>
         </div>
         <div className="open-menu-body">
-          {menuHeaderLinks.map(({ icon, label }) => {
+          {menuHeaderLinks.map(({ icon, label, path }) => {
             return (
-              <div className="item" key={label}>
-                {icon}
-                {label}
-              </div>
+              <Link to={path} className="menu-link">
+                <div className="item" key={label}>
+                  {icon}
+                  {label}
+                </div>
+              </Link>
             );
           })}
           <div className="border-row"></div>

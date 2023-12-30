@@ -14,7 +14,7 @@
 }
 .burger-menu {
   padding: 0;
-  padding: 6px;
+  padding: 6px 6px 6px 0;
 }
 .burger-menu:hover {
   border-radius: 100px;
@@ -86,6 +86,10 @@
   align-items: center;
   gap: 5px;
 }
+.menu-link {
+  text-decoration: none;
+  color: #fff;
+}
 @media screen and (min-width: 640px) {
   .open-menu-container {
     width: 300px;
@@ -97,6 +101,10 @@
     padding: 18px 24px 0px 0px;
     margin-bottom: 25px;
     margin-left: 12px;
+  }
+  .burger-menu {
+    padding: 0;
+    padding: 6px;
   }
   .open-menu-body {
     padding: 18px 0px;

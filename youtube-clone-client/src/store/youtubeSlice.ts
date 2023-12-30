@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getHomePageVideos } from './reducers/getHomePageVideos';
-import { getSearchPageVideos } from './reducers/getSearchPageVideos';
-import { getVideoDetails } from './reducers/getVideoDetails';
-import { getRecommendedVideos } from './reducers/getRecommendedVideo';
+import {
+  getHomePageVideos,
+  getSearchPageVideos,
+  getVideoDetails,
+  getRecommendedVideos,
+} from './reducers';
 
 const initialState = {
   videos: [],
@@ -36,8 +38,7 @@ const youtubeSlice = createSlice({
         state.errors = action.payload;
       }
     }),
-      builder.addCase(getHomePageVideos.rejected, (state, action) => {
-        console.log(action)
+      builder.addCase(getHomePageVideos.rejected, (state) => {
         state.errors = 'Problème survenu lors de la requète !';
       });
     builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
@@ -49,7 +50,6 @@ const youtubeSlice = createSlice({
       }
     });
     builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
-      console.log(action.payload);
       if (action.payload && action.payload.parsedData) {
         state.recommendedVideo = action.payload.parsedData;
         state.errors = null;
